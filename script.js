@@ -93,3 +93,32 @@ mainContainer.addEventListener('click', function (event) {
         if (currentFilter !== 'all-filter-btn') toggleStyle(currentFilter);
     }
 });
+
+
+function renderList(list, statusText) {
+    filterSection.innerHTML = '';
+    list.forEach(item => {
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'card flex justify-between border p-8 rounded-lg bg-white';
+        cardDiv.innerHTML = `
+            <div class="space-y-6">
+                <div>
+                    <p class="companyName text-4xl font-bold text-[#002C5C]">${item.companyName}</p>
+                    <p class="titleName text-lg text-gray-700">${item.titleName}</p>
+                    <p class="workName text-gray-500">${item.workName}</p>
+                </div>
+                <div>
+                    <button class="notApplied bg-[#EEF4FF] p-2.5 rounded-sm text-[#002C5C] font-medium text-[14px] uppercase">${statusText}</button>
+                    <p class="dicText mt-2">${item.dicText}</p>
+                </div>
+                <div class="flex gap-5">
+                    <button class="interviewing-btn bg-white px-4 py-2 border-[3px] border-[#10B981] text-[#10B981] rounded-sm font-bold">interview</button>
+                    <button class="rejecteding-btn bg-white px-4 py-2 border-[3px] border-[#EF4444] text-[#EF4444] rounded-sm font-bold">Rejected</button>
+                </div>
+            </div>
+            <div><button class="btn-delete bg-[#F1F2F4] p-3 rounded-full hover:text-red-500"><i class="fa-regular fa-trash-can"></i></button></div>`;
+        filterSection.appendChild(cardDiv);
+    });
+}
+
+updateDashboard();
